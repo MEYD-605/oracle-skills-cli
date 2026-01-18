@@ -18,22 +18,22 @@ bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli
 
 Oracle skills are reusable instruction sets for AI coding agents, built by [Soul Brews Studio](https://github.com/Soul-Brews-Studio). They extend your agent's capabilities with specialized workflows:
 
-| Skill | Description |
-|-------|-------------|
-| **trace** | Find projects across git history, repos, docs |
-| **recap** | Fresh start context summary |
-| **rrr** | Session retrospective with AI diary |
-| **learn** | Explore codebases with parallel agents |
-| **project** | Project lifecycle management |
-| **forward** | Session handoff |
-| **context-finder** | Fast codebase search |
-| **feel** | Log emotions |
-| **fyi** | Log information for reference |
-| **standup** | Daily standup check |
-| **schedule** | Calendar queries |
-| **watch** | Learn from YouTube videos |
-| **skill-creator** | Create new skills |
-| **where-we-are** | Session awareness |
+| # | Skill | Description |
+|---|-------|-------------|
+| 1 | **context-finder** | Fast codebase search |
+| 2 | **feel** | Log emotions |
+| 3 | **forward** | Session handoff |
+| 4 | **fyi** | Log information for reference |
+| 5 | **learn** | Explore codebases with parallel agents |
+| 6 | **project** | Project lifecycle management |
+| 7 | **recap** | Fresh start context summary |
+| 8 | **rrr** | Session retrospective with AI diary |
+| 9 | **schedule** | Calendar queries |
+| 10 | **skill-creator** | Create new skills |
+| 11 | **standup** | Daily standup check |
+| 12 | **trace** | Find projects across git history, repos, docs |
+| 13 | **watch** | Learn from YouTube videos |
+| 14 | **where-we-are** | Session awareness |
 
 ## Usage
 
