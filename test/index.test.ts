@@ -3,7 +3,7 @@ import { $ } from 'bun';
 import { existsSync, mkdirSync, rmSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
-import { agents, detectInstalledAgents, getAgentNames } from './agents';
+import { agents, detectInstalledAgents, getAgentNames } from '../src/agents';
 
 const TEST_DIR = join(tmpdir(), `oracle-skills-test-${Date.now()}`);
 
@@ -67,7 +67,7 @@ describe('installer', () => {
   });
 
   it('should clone repo with sparse checkout', async () => {
-    const { cloneRepo, cleanup } = await import('./installer');
+    const { cloneRepo, cleanup } = await import('../src/installer');
     
     const repoPath = await cloneRepo();
     expect(existsSync(repoPath)).toBe(true);
@@ -78,7 +78,7 @@ describe('installer', () => {
   }, 30000); // 30s timeout for clone
 
   it('should discover skills from repo', async () => {
-    const { cloneRepo, discoverSkills, cleanup } = await import('./installer');
+    const { cloneRepo, discoverSkills, cleanup } = await import('../src/installer');
     
     const repoPath = await cloneRepo();
     const skills = await discoverSkills(repoPath);
