@@ -20,20 +20,20 @@ Oracle skills are reusable instruction sets for AI coding agents, built by [Soul
 
 | # | Skill | Type | Description |
 |---|-------|------|-------------|
-| 1 | **context-finder** | search | Fast codebase search |
-| 2 | **feel** | log | Log emotions |
-| 3 | **forward** | session | Session handoff |
-| 4 | **fyi** | log | Log information for reference |
-| 5 | **learn** | learn | Explore codebases with parallel agents |
-| 6 | **project** | workflow | Project lifecycle management |
-| 7 | **recap** | session | Fresh start context summary |
-| 8 | **rrr** | session | Session retrospective with AI diary |
-| 9 | **schedule** | workflow | Calendar queries |
-| 10 | **skill-creator** | meta | Create new skills |
-| 11 | **standup** | workflow | Daily standup check |
-| 12 | **trace** | search | Find projects across git history, repos, docs |
-| 13 | **watch** | learn | Learn from YouTube videos |
-| 14 | **where-we-are** | session | Session awareness |
+| 1 | **context-finder** | subagent | Fast codebase search |
+| 2 | **feel** | prompt | Log emotions |
+| 3 | **forward** | prompt | Session handoff |
+| 4 | **fyi** | prompt | Log information for reference |
+| 5 | **learn** | subagent | Explore codebases with parallel agents |
+| 6 | **project** | scripts (11) | Project lifecycle management |
+| 7 | **recap** | scripts (2) | Fresh start context summary |
+| 8 | **rrr** | subagent | Session retrospective with AI diary |
+| 9 | **schedule** | scripts (2) | Calendar queries |
+| 10 | **skill-creator** | scripts (1) | Create new skills |
+| 11 | **standup** | prompt | Daily standup check |
+| 12 | **trace** | subagent | Find projects across git history, repos, docs |
+| 13 | **watch** | scripts (3) | Learn from YouTube videos |
+| 14 | **where-we-are** | prompt | Session awareness |
 
 ## Usage
 
