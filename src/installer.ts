@@ -4,6 +4,7 @@ import { join, dirname } from 'path';
 import * as p from '@clack/prompts';
 import { agents } from './agents.js';
 import type { Skill, InstallOptions } from './types.js';
+import pkg from '../package.json' with { type: 'json' };
 
 // Skills are bundled in the repo
 function getSkillsDir(): string {
@@ -120,6 +121,15 @@ export async function installSkills(
       // Copy skill folder
       await $`cp -r ${skill.path} ${destPath}`.quiet();
     }
+
+    // Write manifest with version info
+    const manifest = {
+      version: pkg.version,
+      installedAt: new Date().toISOString(),
+      skills: skillsToInstall.map((s) => s.name),
+      agent: agentName,
+    };
+    await Bun.write(join(targetDir, '.oracle-skills.json'), JSON.stringify(manifest, null, 2));
 
     p.log.success(`${agent.displayName}: ${targetDir}`);
   }

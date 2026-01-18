@@ -22,7 +22,7 @@ program
   .option('-l, --list', 'List available skills without installing')
   .option('-y, --yes', 'Skip confirmation prompts')
   .action(async (options) => {
-    p.intro('🔮 Oracle Skills Installer');
+    p.intro(`🔮 Oracle Skills Installer v${VERSION}`);
 
     try {
       // List mode - just show skills and exit
@@ -113,7 +113,7 @@ program
   .option('-s, --skill <skills...>', 'Remove specific skills only')
   .option('-y, --yes', 'Skip confirmation prompts')
   .action(async (options) => {
-    p.intro('🔮 Oracle Skills Uninstaller');
+    p.intro(`🔮 Oracle Skills Uninstaller v${VERSION}`);
 
     try {
       // Determine target agents
