@@ -4,7 +4,7 @@ import * as p from '@clack/prompts';
 import { agents, detectInstalledAgents, getAgentNames } from './agents.js';
 import { cloneRepo, listSkills, installSkills, uninstallSkills, cleanup } from './installer.js';
 
-const VERSION = '1.0.1';
+const VERSION = '1.1.0';
 
 program
   .name('oracle-skills')
