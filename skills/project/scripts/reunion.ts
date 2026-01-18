@@ -5,18 +5,17 @@ import { existsSync, mkdirSync, appendFileSync, readdirSync } from "fs";
 import { join, basename } from "path";
 import { getRoot, getPaths, getSymlinks, matchesSlug, today, now, LinkInfo } from "./utils.ts";
 
-const ROOT = getRoot();
-const { learnDir, incubateDir, logDir } = getPaths(ROOT);
-mkdirSync(logDir, { recursive: true });
-
 const args = process.argv.slice(2);
-const keep = args.includes("--keep");
 const slug = args.find((a) => !a.startsWith("--"));
-
 if (!slug) {
   console.log("Usage: ROOT=/path bun reunion.ts [slug|all] [--keep]");
   process.exit(1);
 }
+
+const ROOT = getRoot();
+const { learnDir, incubateDir, logDir } = getPaths(ROOT);
+mkdirSync(logDir, { recursive: true });
+const keep = args.includes("--keep");
 
 async function findProject(slug: string): Promise<LinkInfo | null> {
   for (const dir of [learnDir, incubateDir]) {

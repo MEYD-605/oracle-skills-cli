@@ -5,14 +5,14 @@ import { existsSync, mkdirSync, unlinkSync, symlinkSync } from "fs";
 import { dirname, join } from "path";
 import { getRoot, getPaths, parseRepo, ghqPath, updateSlugsFile } from "./utils.ts";
 
-const ROOT = getRoot();
-const { slugsFile, learnDir } = getPaths(ROOT);
 const input = process.argv[2];
-
 if (!input) {
   console.log("Usage: ROOT=/path bun learn.ts <owner/repo|url>");
   process.exit(1);
 }
+
+const ROOT = getRoot();
+const { slugsFile, learnDir } = getPaths(ROOT);
 
 // Parse input (handles URLs, owner/repo, or just repo name)
 let repo: string;

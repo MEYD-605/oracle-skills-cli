@@ -5,18 +5,17 @@ import { existsSync, mkdirSync, unlinkSync, symlinkSync } from "fs";
 import { join } from "path";
 import { getRoot, getPaths, ghqPath } from "./utils.ts";
 
-const ROOT = getRoot();
-const { incubateDir } = getPaths(ROOT);
-const ORG = "laris-co";
-
 const args = process.argv.slice(2);
-const isPublic = args.includes("--public");
 const name = args.find((a) => !a.startsWith("--"));
-
 if (!name) {
   console.log("Usage: ROOT=/path bun create.ts <name> [--public]");
   process.exit(1);
 }
+
+const ROOT = getRoot();
+const { incubateDir } = getPaths(ROOT);
+const ORG = "laris-co";
+const isPublic = args.includes("--public");
 
 const localPath = ghqPath(ORG, name);
 const linkPath = join(incubateDir, ORG, name);

@@ -5,15 +5,14 @@ import { existsSync, readlinkSync, unlinkSync, symlinkSync } from "fs";
 import { join } from "path";
 import { getRoot, getPaths, ghqPath, parseRepo } from "./utils.ts";
 
-const ROOT = getRoot();
-const { incubateDir } = getPaths(ROOT);
-
 const [slug, target] = process.argv.slice(2);
-
 if (!slug || !target) {
   console.log("Usage: ROOT=/path bun spinoff.ts <slug> <target-org/repo>");
   process.exit(1);
 }
+
+const ROOT = getRoot();
+const { incubateDir } = getPaths(ROOT);
 
 const incubatePath = join(ROOT, "ψ/incubate", slug);
 

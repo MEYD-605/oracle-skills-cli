@@ -5,10 +5,17 @@ import { existsSync, readdirSync } from "fs";
 import { join, basename } from "path";
 import { getRoot, getPaths, today } from "./utils.ts";
 
+const args = process.argv.slice(2);
+const cmd = args[0] || "list";
+
+// Show usage only for help flag (list is default, doesn't need ROOT check first)
+if (args.includes("--help") || args.includes("-h")) {
+  console.log("Usage: ROOT=/path bun index.ts [list|all|slug] [--dry-run]");
+  process.exit(0);
+}
+
 const ROOT = getRoot();
 const { logDir } = getPaths(ROOT);
-
-const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const dateArg = args.find((a) => a.match(/^20\d{2}-\d{2}-\d{2}$/) || a === "today");
 const date = dateArg === "today" || !dateArg ? today() : dateArg;
@@ -70,8 +77,6 @@ async function indexManifest(manifestPath: string) {
 }
 
 // Main
-const cmd = args[0] || "list";
-
 if (cmd === "list" || cmd === "--list") {
   listManifests();
 } else if (cmd === "all") {

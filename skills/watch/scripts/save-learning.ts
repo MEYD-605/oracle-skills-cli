@@ -7,15 +7,18 @@
 import { existsSync, mkdirSync, appendFileSync } from "fs";
 import { dirname, join } from "path";
 
+const title = process.argv[2];
+if (!title) {
+  console.log("Usage: ROOT=/path bun save-learning.ts <title> <url> <video_id> <transcript> [cc]");
+  process.exit(1);
+}
+
 const ROOT = process.env.ROOT;
 if (!ROOT) {
   console.error("Error: ROOT environment variable required");
-  console.error("Usage: ROOT=/path/to/repo bun save-learning.ts ...");
   process.exit(1);
 }
-const SLUGS_FILE = join(ROOT, "ψ/memory/slugs.yaml");
 
-const title = process.argv[2];
 const url = process.argv[3];
 const videoId = process.argv[4];
 const transcript = process.argv[5];

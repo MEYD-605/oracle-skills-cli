@@ -4,8 +4,14 @@
 
 import { $ } from "bun";
 
+const filter = process.argv[2];
+if (!filter || filter === "--help" || filter === "-h") {
+  console.log("Usage: SCHEDULE_FILE=path bun query.ts <filter>");
+  console.log("Filters: today, tomorrow, upcoming, january, <keyword>");
+  process.exit(filter ? 0 : 1);
+}
+
 const scheduleFile = process.env.SCHEDULE_FILE || "ψ/inbox/schedule.md";
-const filter = process.argv[2] || "upcoming";
 
 const today = new Date();
 const todayMonth = today.toLocaleString('en', { month: 'short' });

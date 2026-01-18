@@ -4,16 +4,15 @@ import { mkdirSync, unlinkSync, appendFileSync } from "fs";
 import { join } from "path";
 import { getRoot, getPaths, getSymlinks, matchesSlug, today, now, LinkInfo } from "./utils.ts";
 
-const ROOT = getRoot();
-const { learnDir, incubateDir, logDir } = getPaths(ROOT);
-mkdirSync(logDir, { recursive: true });
-
 const arg = process.argv[2];
-
 if (!arg) {
   console.log("Usage: ROOT=/path bun offload.ts [slug|all]");
   process.exit(1);
 }
+
+const ROOT = getRoot();
+const { learnDir, incubateDir, logDir } = getPaths(ROOT);
+mkdirSync(logDir, { recursive: true });
 
 async function offload(slug?: string) {
   const logFile = join(logDir, `offload-${today()}.log`);

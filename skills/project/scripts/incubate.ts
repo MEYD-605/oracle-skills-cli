@@ -5,18 +5,17 @@ import { existsSync, mkdirSync, unlinkSync, symlinkSync } from "fs";
 import { dirname, join } from "path";
 import { getRoot, getPaths, parseRepo, ghqPath, updateSlugsFile } from "./utils.ts";
 
-const ROOT = getRoot();
-const { slugsFile, incubateDir } = getPaths(ROOT);
-
 const args = process.argv.slice(2);
 const input = args[0];
-const orgFlag = args.indexOf("--org");
-const defaultOrg = orgFlag !== -1 ? args[orgFlag + 1] : "laris-co";
-
 if (!input) {
   console.log("Usage: ROOT=/path bun incubate.ts <owner/repo|name> [--org org]");
   process.exit(1);
 }
+
+const ROOT = getRoot();
+const { slugsFile, incubateDir } = getPaths(ROOT);
+const orgFlag = args.indexOf("--org");
+const defaultOrg = orgFlag !== -1 ? args[orgFlag + 1] : "laris-co";
 
 const { owner, name, slug } = parseRepo(input, defaultOrg);
 const localPath = ghqPath(owner, name);
