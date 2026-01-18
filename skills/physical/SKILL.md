@@ -25,8 +25,27 @@ Check Nat's current physical location from FindMy data.
 Use a Haiku subagent to fetch and display location data:
 
 ```bash
-# Locate and run the location query script (works in any install location)
-SCRIPT=$(find ~ -name location-query.ts 2>/dev/null | head -1)
+# Locate the script (optimized search)
+LOCATIONS=(
+  "$HOME/.config/opencode/command/physical/scripts/location-query.ts"
+  "./.opencode/command/physical/scripts/location-query.ts"
+  "$HOME/.claude/skills/physical/scripts/location-query.ts"
+  "./skills/physical/scripts/location-query.ts"
+)
+
+SCRIPT=""
+for loc in "${LOCATIONS[@]}"; do
+  if [ -f "$loc" ]; then
+    SCRIPT="$loc"
+    break
+  fi
+done
+
+if [ -z "$SCRIPT" ]; then
+  # Fallback to slow search only if explicit paths fail
+  SCRIPT=$(find ~ -name location-query.ts -not -path "*/node_modules/*" 2>/dev/null | head -1)
+fi
+
 if [ -z "$SCRIPT" ]; then
   echo "Error: location-query.ts not found. Check install."
 else
