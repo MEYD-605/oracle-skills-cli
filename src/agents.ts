@@ -9,8 +9,8 @@ export const agents: Record<AgentType, AgentConfig> = {
   opencode: {
     name: 'opencode',
     displayName: 'OpenCode',
-    skillsDir: '.opencode/skill',
-    globalSkillsDir: join(home, '.config/opencode/skill'),
+    skillsDir: '.opencode/command', // Updated to match OpenCode legacy requirement
+    globalSkillsDir: join(home, '.config/opencode/command'), // Updated to match OpenCode legacy requirement
     detectInstalled: () => existsSync(join(home, '.config/opencode')),
   },
   'claude-code': {
