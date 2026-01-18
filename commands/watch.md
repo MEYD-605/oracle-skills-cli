@@ -1,5 +1,5 @@
 ---
-description: Learn from YouTube videos via Gemini transcription. Use when user says "watch", "transcribe youtube", "learn from video", or shares a YouTube URL to study.
+description: v1.3.4 (Static) | Learn from YouTube videos via Gemini transcription. Use when user says "watch", "transcribe youtube", "learn from video", or shares a YouTube URL to study.
 ---
 
 **EXECUTE NOW:**

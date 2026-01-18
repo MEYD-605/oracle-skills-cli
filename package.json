@@ -16,6 +16,7 @@
     "dev": "bun run src/index.ts",
     "test": "bun test test/",
     "compile": "bun scripts/compile.ts",
+    "version": "bun run compile && git add commands",
     "prepare": "lefthook install",
     "prepublishOnly": "bun run compile && bun run build"
   },
