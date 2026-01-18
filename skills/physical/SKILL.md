@@ -26,11 +26,11 @@ Use a Haiku subagent to fetch and display location data:
 
 ```bash
 # Locate and run the location query script (works in any install location)
-SCRIPT=$(find ~ -name location-query.sh 2>/dev/null | head -1)
+SCRIPT=$(find ~ -name location-query.ts 2>/dev/null | head -1)
 if [ -z "$SCRIPT" ]; then
-  echo "Error: location-query.sh not found. Check install."
+  echo "Error: location-query.ts not found. Check install."
 else
-  bash "$SCRIPT" all
+  bun "$SCRIPT" all
 fi
 ```
 
