@@ -1,6 +1,7 @@
 import { readdir, readFile, writeFile, mkdir } from 'fs/promises';
 import { join, basename } from 'path';
 import { existsSync } from 'fs';
+import pkg from '../package.json' with { type: 'json' };
 
 const SKILLS_DIR = join(process.cwd(), 'skills');
 const COMMANDS_DIR = join(process.cwd(), 'commands');
@@ -34,7 +35,10 @@ async function compile() {
         
         // Extract description
         const descMatch = frontmatter.match(/description:\s*(.+)$/m);
-        const description = descMatch ? descMatch[1].trim() : `${skillName} skill`;
+        const rawDescription = descMatch ? descMatch[1].trim() : `${skillName} skill`;
+        
+        // Inject version (Static)
+        const description = `v${pkg.version} (Static) | ${rawDescription}`;
         
         // Create command format
         const commandContent = `---
