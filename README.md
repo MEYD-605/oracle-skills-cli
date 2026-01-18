@@ -43,18 +43,34 @@ Oracle skills are reusable instruction sets for AI coding agents, built by [Soul
 ### Basic Installation
 
 ```bash
-# From GitHub (recommended)
+# Interactive (prompts for confirmation)
 bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.0
 
 # Install globally (user-level)
 bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.0 -g
-
-# Non-interactive mode
-bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.0 -g -y
-
-# From npm (after publish)
-bunx oracle-skills
 ```
+
+### Agent Mode (Non-Interactive)
+
+For CI/CD, scripts, or AI agent automation:
+
+```bash
+# Install all skills globally, no prompts
+bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.0 install -y -g
+
+# Install specific skills to specific agent
+bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.0 install -y -g -a claude-code -s rrr -s trace
+
+# Uninstall all, no prompts
+bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.0 uninstall -y -g
+```
+
+| Flag | Purpose |
+|------|---------|
+| `-y` | Skip all confirmation prompts |
+| `-g` | Install to global (user) directories |
+| `-a` | Target specific agent(s) |
+| `-s` | Install specific skill(s) |
 
 ### List Available Skills
 
