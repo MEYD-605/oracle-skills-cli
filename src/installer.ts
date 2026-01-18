@@ -1,5 +1,5 @@
-import { execSync } from 'child_process';
-import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync } from 'fs';
+import { $ } from 'bun';
+import { existsSync, readdirSync, rmSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
 import * as p from '@clack/prompts';
@@ -16,26 +16,20 @@ export async function cloneRepo(): Promise<string> {
   const tempDir = join(tmpdir(), `oracle-skills-${Date.now()}`);
 
   try {
-    execSync(
-      `git clone --depth 1 --filter=blob:none --sparse https://github.com/${REPO}.git "${tempDir}"`,
-      { stdio: 'pipe' }
-    );
-    execSync(`git sparse-checkout set ${SKILLS_PATH}`, {
-      cwd: tempDir,
-      stdio: 'pipe',
-    });
+    // Sparse checkout for faster clone
+    await $`git clone --depth 1 --filter=blob:none --sparse https://github.com/${REPO}.git ${tempDir}`.quiet();
+    await $`git -C ${tempDir} sparse-checkout set ${SKILLS_PATH}`.quiet();
     spinner.stop('Repository cloned');
     return tempDir;
-  } catch (error) {
-    spinner.stop('Clone failed, trying full clone');
-    execSync(`git clone --depth 1 https://github.com/${REPO}.git "${tempDir}"`, {
-      stdio: 'pipe',
-    });
+  } catch {
+    // Fallback to full clone
+    spinner.stop('Sparse clone failed, trying full clone');
+    await $`git clone --depth 1 https://github.com/${REPO}.git ${tempDir}`.quiet();
     return tempDir;
   }
 }
 
-export function discoverSkills(repoPath: string): Skill[] {
+export async function discoverSkills(repoPath: string): Promise<Skill[]> {
   const skillsPath = join(repoPath, SKILLS_PATH);
 
   if (!existsSync(skillsPath)) {
@@ -51,7 +45,7 @@ export function discoverSkills(repoPath: string): Skill[] {
   for (const name of skillDirs) {
     const skillMdPath = join(skillsPath, name, 'SKILL.md');
     if (existsSync(skillMdPath)) {
-      const content = readFileSync(skillMdPath, 'utf-8');
+      const content = await Bun.file(skillMdPath).text();
       const descMatch = content.match(/description:\s*(.+)/);
       skills.push({
         name,
@@ -65,7 +59,7 @@ export function discoverSkills(repoPath: string): Skill[] {
 }
 
 export async function listSkills(repoPath: string): Promise<void> {
-  const skills = discoverSkills(repoPath);
+  const skills = await discoverSkills(repoPath);
 
   if (skills.length === 0) {
     p.log.warn('No skills found');
@@ -87,7 +81,7 @@ export async function installSkills(
   targetAgents: string[],
   options: InstallOptions
 ): Promise<void> {
-  const allSkills = discoverSkills(repoPath);
+  const allSkills = await discoverSkills(repoPath);
 
   if (allSkills.length === 0) {
     p.log.error('No skills found to install');
@@ -120,8 +114,6 @@ export async function installSkills(
   const spinner = p.spinner();
   spinner.start('Installing skills');
 
-  let installedCount = 0;
-
   for (const agentName of targetAgents) {
     const agent = agents[agentName as keyof typeof agents];
     if (!agent) {
@@ -131,8 +123,8 @@ export async function installSkills(
 
     const targetDir = options.global ? agent.globalSkillsDir : join(process.cwd(), agent.skillsDir);
 
-    // Create target directory
-    mkdirSync(targetDir, { recursive: true });
+    // Create target directory using Bun Shell
+    await $`mkdir -p ${targetDir}`.quiet();
 
     // Copy each skill
     for (const skill of skillsToInstall) {
@@ -140,11 +132,11 @@ export async function installSkills(
 
       // Remove existing if present
       if (existsSync(destPath)) {
-        rmSync(destPath, { recursive: true });
+        await $`rm -rf ${destPath}`.quiet();
       }
 
-      cpSync(skill.path, destPath, { recursive: true });
-      installedCount++;
+      // Copy skill folder
+      await $`cp -r ${skill.path} ${destPath}`.quiet();
     }
 
     p.log.success(`${agent.displayName}: ${targetDir}`);
@@ -153,9 +145,9 @@ export async function installSkills(
   spinner.stop(`Installed ${skillsToInstall.length} skills to ${targetAgents.length} agent(s)`);
 }
 
-export function cleanup(repoPath: string): void {
+export async function cleanup(repoPath: string): Promise<void> {
   try {
-    rmSync(repoPath, { recursive: true, force: true });
+    await $`rm -rf ${repoPath}`.quiet();
   } catch {
     // Ignore cleanup errors
   }

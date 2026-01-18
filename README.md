@@ -5,8 +5,10 @@ Install Oracle skills to Claude Code, OpenCode, Cursor, and 11+ AI coding agents
 ## Quick Start
 
 ```bash
-npx oracle-skills
+bunx oracle-skills
 ```
+
+> **Note**: Requires [Bun](https://bun.sh). Install with `curl -fsSL https://bun.sh/install | bash`
 
 ## What are Oracle Skills?
 
@@ -35,37 +37,37 @@ Oracle skills are reusable instruction sets for AI coding agents, built by [Soul
 
 ```bash
 # Auto-detect installed agents and install
-npx oracle-skills
+bunx oracle-skills
 
 # Install globally (user-level)
-npx oracle-skills -g
+bunx oracle-skills -g
 
 # Non-interactive mode
-npx oracle-skills -g -y
+bunx oracle-skills -g -y
 ```
 
 ### List Available Skills
 
 ```bash
-npx oracle-skills --list
+bunx oracle-skills --list
 ```
 
 ### Install Specific Skills
 
 ```bash
-npx oracle-skills --skill trace --skill rrr
+bunx oracle-skills --skill trace --skill rrr
 ```
 
 ### Target Specific Agents
 
 ```bash
-npx oracle-skills -a claude-code -a opencode
+bunx oracle-skills -a claude-code -a opencode
 ```
 
 ### List Supported Agents
 
 ```bash
-npx oracle-skills agents
+bunx oracle-skills agents
 ```
 
 ## Supported Agents
