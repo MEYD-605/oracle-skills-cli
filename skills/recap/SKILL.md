@@ -22,7 +22,7 @@ trigger: /recap
 **Run the script, then add suggestions:**
 
 ```bash
-.claude/scripts/recap.sh
+.claude/scripts/recap.ts
 ```
 
 Script outputs formatted data instantly (~0.1s). Then LLM adds:
@@ -47,7 +47,7 @@ Script outputs formatted data instantly (~0.1s). Then LLM adds:
 **Full context with retro/handoff content:**
 
 ```bash
-.claude/scripts/recap-rich.sh
+.claude/scripts/recap-rich.ts
 ```
 
 Includes: tracks, retro summary, commits, handoff details.

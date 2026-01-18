@@ -19,7 +19,7 @@ Query schedule.md using DuckDB markdown extension for fast, structured access.
 Run the query script:
 
 ```bash
-.claude/skills/schedule/scripts/query.sh [filter]
+.claude/skills/schedule/scripts/query.ts [filter]
 ```
 
 Script handles:
@@ -38,6 +38,6 @@ Script handles:
 
 ## See Also
 
-- `scripts/query.sh` - Main query script
+- `scripts/query.ts` - Main query script
 - `ψ/inbox/schedule.md` - Source file
 - DuckDB markdown extension docs

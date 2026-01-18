@@ -19,9 +19,9 @@ Learn from YouTube videos by sending to Gemini for transcription, then indexing 
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/get-metadata.sh <url>` | Get title, duration, channel (JSON) |
-| `scripts/get-cc.sh <url> [lang]` | Get captions in SRT format |
-| `scripts/save-learning.sh <title> <url> <id> <transcript> [cc]` | Save to ψ/memory/learnings/ |
+| `scripts/get-metadata.ts <url>` | Get title, duration, channel (JSON) |
+| `scripts/get-cc.ts <url> [lang]` | Get captions in SRT format |
+| `scripts/save-learning.ts <title> <url> <id> <transcript> [cc]` | Save to ψ/memory/learnings/ |
 
 ## Workflow
 
@@ -31,7 +31,7 @@ Learn from YouTube videos by sending to Gemini for transcription, then indexing 
 SKILL_DIR=".claude/skills/watch"
 
 # Get video metadata (JSON)
-METADATA=$($SKILL_DIR/scripts/get-metadata.sh "$URL")
+METADATA=$($SKILL_DIR/scripts/get-metadata.ts "$URL")
 TITLE=$(echo "$METADATA" | jq -r '.title')
 VIDEO_ID=$(echo "$METADATA" | jq -r '.id')
 DURATION=$(echo "$METADATA" | jq -r '.duration_string')
@@ -41,7 +41,7 @@ echo "⏱️ Duration: $DURATION"
 echo "🆔 Video ID: $VIDEO_ID"
 
 # Get captions (may be empty)
-CC_TEXT=$($SKILL_DIR/scripts/get-cc.sh "$URL" en)
+CC_TEXT=$($SKILL_DIR/scripts/get-cc.ts "$URL" en)
 if [ "$CC_TEXT" = "NO_CAPTIONS_AVAILABLE" ]; then
   HAS_CC=false
   echo "⚠️ No captions available"
@@ -143,7 +143,7 @@ get_page_text({ tabId: TAB_ID })
 Use the save script (handles slug, filename, slugs.yaml):
 
 ```bash
-$SKILL_DIR/scripts/save-learning.sh "$TITLE" "$URL" "$VIDEO_ID" "$GEMINI_RESPONSE" "$CC_TEXT"
+$SKILL_DIR/scripts/save-learning.ts "$TITLE" "$URL" "$VIDEO_ID" "$GEMINI_RESPONSE" "$CC_TEXT"
 ```
 
 ### Step 6: Index to Oracle
