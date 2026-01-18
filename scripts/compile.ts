@@ -7,7 +7,7 @@ const SKILLS_DIR = join(process.cwd(), 'skills');
 const COMMANDS_DIR = join(process.cwd(), 'commands');
 
 async function compile() {
-  console.log('🔮 Compiling skills to commands...');
+  console.log(`🔮 Compiling skills to commands (v${pkg.version})...`);
 
   if (!existsSync(COMMANDS_DIR)) {
     await mkdir(COMMANDS_DIR);
