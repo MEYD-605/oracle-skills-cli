@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 import { program } from 'commander';
 import * as p from '@clack/prompts';
 import { agents, detectInstalledAgents, getAgentNames } from './agents.js';
