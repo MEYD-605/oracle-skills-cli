@@ -2,14 +2,19 @@
 import { program } from 'commander';
 import * as p from '@clack/prompts';
 import { agents, detectInstalledAgents, getAgentNames } from './agents.js';
-import { cloneRepo, listSkills, installSkills, cleanup } from './installer.js';
+import { cloneRepo, listSkills, installSkills, uninstallSkills, cleanup } from './installer.js';
 
-const VERSION = '1.0.0';
+const VERSION = '1.0.1';
 
 program
   .name('oracle-skills')
   .description('Install Oracle skills to Claude Code, OpenCode, Cursor, and 11+ AI coding agents')
-  .version(VERSION)
+  .version(VERSION);
+
+// Install command (default)
+program
+  .command('install', { isDefault: true })
+  .description('Install Oracle skills to agents')
   .option('-g, --global', 'Install to user directory instead of project')
   .option('-a, --agent <agents...>', 'Target specific agents (e.g., claude-code, opencode)')
   .option('-s, --skill <skills...>', 'Install specific skills by name')
@@ -108,7 +113,68 @@ program
     }
   });
 
-// Add agents subcommand
+// Uninstall command
+program
+  .command('uninstall')
+  .description('Remove installed Oracle skills')
+  .option('-g, --global', 'Uninstall from user directory')
+  .option('-a, --agent <agents...>', 'Target specific agents')
+  .option('-s, --skill <skills...>', 'Remove specific skills only')
+  .option('-y, --yes', 'Skip confirmation prompts')
+  .action(async (options) => {
+    p.intro('🔮 Oracle Skills Uninstaller');
+
+    try {
+      // Determine target agents
+      let targetAgents: string[] = options.agent ? [...options.agent] : [];
+
+      // Skip auto-detect if agents specified
+      if (targetAgents.length > 0) {
+        p.log.info(`Using specified agents: ${targetAgents.join(', ')}`);
+      } else {
+        const detected = detectInstalledAgents();
+        if (detected.length > 0) {
+          p.log.info(`Detected agents: ${detected.map((a) => agents[a as keyof typeof agents]?.displayName).join(', ')}`);
+          targetAgents = detected;
+        }
+      }
+
+      if (targetAgents.length === 0) {
+        p.log.error('No agents detected. Use --agent to specify.');
+        return;
+      }
+
+      // Confirm
+      if (!options.yes) {
+        const skillInfo = options.skill ? `skills: ${options.skill.join(', ')}` : 'all Oracle skills';
+        const confirmed = await p.confirm({
+          message: `Remove ${skillInfo} from ${targetAgents.length} agent(s)?`,
+        });
+
+        if (p.isCancel(confirmed) || !confirmed) {
+          p.log.info('Cancelled');
+          return;
+        }
+      }
+
+      const spinner = p.spinner();
+      spinner.start('Removing skills');
+
+      const result = await uninstallSkills(targetAgents, {
+        global: options.global,
+        skills: options.skill,
+        yes: options.yes,
+      });
+
+      spinner.stop(`Removed ${result.removed} skills from ${result.agents} agent(s)`);
+      p.outro('✨ Skills removed. Restart your agent to apply changes.');
+    } catch (error) {
+      p.log.error(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      process.exit(1);
+    }
+  });
+
+// Agents command
 program
   .command('agents')
   .description('List all supported agents')

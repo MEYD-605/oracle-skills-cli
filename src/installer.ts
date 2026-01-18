@@ -152,3 +152,49 @@ export async function cleanup(repoPath: string): Promise<void> {
     // Ignore cleanup errors
   }
 }
+
+export async function uninstallSkills(
+  targetAgents: string[],
+  options: { global: boolean; skills?: string[]; yes?: boolean }
+): Promise<{ removed: number; agents: number }> {
+  let totalRemoved = 0;
+  let agentsProcessed = 0;
+
+  for (const agentName of targetAgents) {
+    const agent = agents[agentName as keyof typeof agents];
+    if (!agent) {
+      p.log.warn(`Unknown agent: ${agentName}`);
+      continue;
+    }
+
+    const targetDir = options.global ? agent.globalSkillsDir : join(process.cwd(), agent.skillsDir);
+
+    if (!existsSync(targetDir)) {
+      continue;
+    }
+
+    // Get installed skills
+    const installed = readdirSync(targetDir, { withFileTypes: true })
+      .filter((d) => d.isDirectory() && !d.name.startsWith('.'))
+      .map((d) => d.name);
+
+    // Filter if specific skills requested
+    const toRemove = options.skills
+      ? installed.filter((s) => options.skills!.includes(s))
+      : installed;
+
+    if (toRemove.length === 0) continue;
+
+    // Remove skills
+    for (const skill of toRemove) {
+      const skillPath = join(targetDir, skill);
+      await $`rm -rf ${skillPath}`.quiet();
+      totalRemoved++;
+    }
+
+    agentsProcessed++;
+    p.log.success(`${agent.displayName}: removed ${toRemove.length} skills`);
+  }
+
+  return { removed: totalRemoved, agents: agentsProcessed };
+}

@@ -13,6 +13,7 @@
   "scripts": {
     "build": "bun build src/index.ts --outdir dist --target bun --minify",
     "dev": "bun run src/index.ts",
+    "test": "bun test",
     "prepublishOnly": "bun run build"
   },
   "keywords": [
