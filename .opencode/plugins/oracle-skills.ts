@@ -4,7 +4,7 @@
  */
 import type { Plugin } from "@opencode-ai/plugin"
 
-const PREFIX = "opencodecli:"
+const PREFIX = "oracle-skills:"
 
 const OracleSkillsPlugin: Plugin = () => ({
   name: "oracle-skills",
