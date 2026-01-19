@@ -178,6 +178,20 @@ bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli install -y -
 `;
     await Bun.write(join(targetDir, 'VERSION.md'), versionMd);
 
+    // OpenCode only: install plugin
+    if (agentName === 'opencode') {
+      const home = require('os').homedir();
+      const pluginDir = options.global
+        ? join(home, '.config/opencode/plugins')
+        : join(process.cwd(), '.opencode/plugins');
+      await $`mkdir -p ${pluginDir}`.quiet();
+      const hookSrc = join(dirname(import.meta.path), '..', 'hooks', 'opencode', 'oracle-skills.ts');
+      if (existsSync(hookSrc)) {
+        await $`cp ${hookSrc} ${join(pluginDir, 'oracle-skills.ts')}`.quiet();
+        p.log.success(`OpenCode plugin: ${pluginDir}/oracle-skills.ts`);
+      }
+    }
+
     p.log.success(`${agent.displayName}: ${targetDir}`);
   }
 
