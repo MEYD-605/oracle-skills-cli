@@ -27,7 +27,7 @@ describe("installer stub format", () => {
     // Should be stub format
     expect(content).toContain("Load skill `trace`");
     expect(content).toContain("Skill:");
-    expect(content).toContain("ARGUMENTS: {args}");
+    expect(content).toContain("ARGUMENTS: $ARGUMENTS");
     
     // Should NOT have full content
     expect(content).not.toContain("## Step 0: Timestamp");
@@ -64,7 +64,7 @@ describe("installer stub format", () => {
     expect(content).toMatch(/Skill: \{skillPath\}\/.+\/SKILL\.md/);
 
     // Arguments
-    expect(content).toContain("ARGUMENTS: {args}");
+    expect(content).toContain("ARGUMENTS: $ARGUMENTS");
   });
 
   it("installer should copy stubs for OpenCode", async () => {

@@ -6,4 +6,4 @@ Load skill `where-we-are` version v1.5.2 from path below and execute with argume
 
 Skill: {skillPath}/where-we-are/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS

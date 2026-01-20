@@ -51,7 +51,7 @@ Load skill \`${skillName}\` version v${pkg.version} from path below and execute 
 
 Skill: ${DEFAULT_SKILL_PATH}/${skillName}/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS
 `;
 
         await writeFile(join(COMMANDS_DIR, `${skillName}.md`), commandContent);

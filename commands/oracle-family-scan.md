@@ -6,4 +6,4 @@ Load skill `oracle-family-scan` version v1.5.2 from path below and execute with 
 
 Skill: {skillPath}/oracle-family-scan/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS

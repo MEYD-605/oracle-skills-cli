@@ -6,4 +6,4 @@ Load skill `trace` version v1.5.2 from path below and execute with arguments.
 
 Skill: {skillPath}/trace/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS

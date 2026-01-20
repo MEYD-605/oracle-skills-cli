@@ -6,4 +6,4 @@ Load skill `skill-creator` version v1.5.2 from path below and execute with argum
 
 Skill: {skillPath}/skill-creator/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS

@@ -38,7 +38,7 @@ describe("installer behavior by agent type", () => {
       
       // Stub should be flat file format
       expect(stubContent).toContain("Load skill `trace`");
-      expect(stubContent).toContain("ARGUMENTS: {args}");
+      expect(stubContent).toContain("ARGUMENTS: $ARGUMENTS");
       expect(stubContent).not.toContain("## Step 0:");
     });
 

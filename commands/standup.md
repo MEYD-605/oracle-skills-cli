@@ -6,4 +6,4 @@ Load skill `standup` version v1.5.2 from path below and execute with arguments.
 
 Skill: {skillPath}/standup/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS

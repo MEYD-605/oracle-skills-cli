@@ -6,4 +6,4 @@ Load skill `schedule` version v1.5.2 from path below and execute with arguments.
 
 Skill: {skillPath}/schedule/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS

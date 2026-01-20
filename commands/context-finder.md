@@ -6,4 +6,4 @@ Load skill `context-finder` version v1.5.2 from path below and execute with argu
 
 Skill: {skillPath}/context-finder/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS

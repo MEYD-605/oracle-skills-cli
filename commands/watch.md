@@ -6,4 +6,4 @@ Load skill `watch` version v1.5.2 from path below and execute with arguments.
 
 Skill: {skillPath}/watch/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS

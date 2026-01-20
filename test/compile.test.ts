@@ -114,6 +114,6 @@ This is the test skill content.
     expect(output).toMatch(/Skill: .+\/SKILL\.md/);
     
     // Should end with ARGUMENTS
-    expect(output).toContain("ARGUMENTS: {args}");
+    expect(output).toContain("ARGUMENTS: $ARGUMENTS");
   });
 });

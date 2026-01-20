@@ -32,7 +32,7 @@ Load skill `{name}` version {version} from path below and execute with arguments
 
 Skill: {skillPath}/{name}/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS
 ```
 
 ## Placeholders
@@ -43,7 +43,7 @@ ARGUMENTS: {args}
 | `{description}` | Frontmatter | `Find projects across git history.` |
 | `{version}` | package.json | `v1.4.0` |
 | `{skillPath}` | Install location (scope + agent) | `.claude/skills` or `~/.claude/skills` |
-| `{args}` | User input at runtime | `--deep about oracle` |
+| `$ARGUMENTS` | User input at runtime | `--deep about oracle` |
 
 ## Skill Paths by Agent & Scope
 
@@ -68,7 +68,7 @@ Load skill `trace` version v1.4.0 from path below and execute with arguments.
 
 Skill: ~/.claude/skills/trace/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS
 ```
 
 **Local install to OpenCode**:
@@ -81,7 +81,7 @@ Load skill `trace` version v1.4.0 from path below and execute with arguments.
 
 Skill: .opencode/command/trace/SKILL.md
 
-ARGUMENTS: {args}
+ARGUMENTS: $ARGUMENTS
 ```
 
 ## Run
