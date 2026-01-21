@@ -24,34 +24,34 @@ Oracle skills are reusable instruction sets for AI coding agents, built by [Soul
 ### Subagent Skills
 Uses parallel agents for complex tasks.
 
-| Skill | Description |
-|-------|-------------|
-| **context-finder** | Fast codebase search |
-| **learn** | Explore codebases with parallel agents |
-| **rrr** | Session retrospective with AI diary |
-| **trace** | Find projects across git history, repos, docs |
+| # | Skill | Type | Description |
+|---|-------|------|-------------|
+| 1 | **context-finder** | subagent | Fast codebase search |
+| 2 | **learn** | subagent | Explore codebases with parallel agents |
+| 3 | **rrr** | subagent | Session retrospective with AI diary |
+| 4 | **trace** | subagent | Find projects across git history, repos, docs |
 
 ### Prompt Skills
 Simple instruction-based skills.
 
-| Skill | Description |
-|-------|-------------|
-| **feel** | Log emotions |
-| **forward** | Session handoff |
-| **fyi** | Log information for reference |
-| **standup** | Daily standup check |
-| **where-we-are** | Session awareness |
+| # | Skill | Type | Description |
+|---|-------|------|-------------|
+| 5 | **feel** | prompt | Log emotions |
+| 6 | **forward** | prompt | Session handoff |
+| 7 | **fyi** | prompt | Log information for reference |
+| 8 | **standup** | prompt | Daily standup check |
+| 9 | **where-we-are** | prompt | Session awareness |
 
 ### Prompt + Scripts Skills
 Skills with executable helper scripts.
 
-| Skill | Scripts | Description |
-|-------|---------|-------------|
-| **project** | 11 | Project lifecycle management |
-| **recap** | 2 | Fresh start context summary |
-| **schedule** | 2 | Calendar queries |
-| **skill-creator** | 1 | Create new skills |
-| **watch** | 3 | Learn from YouTube videos |
+| # | Skill | Type | Description |
+|---|-------|------|-------------|
+| 10 | **project** | prompt + scripts (11) | Project lifecycle management |
+| 11 | **recap** | prompt + scripts (2) | Fresh start context summary |
+| 12 | **schedule** | prompt + scripts (2) | Calendar queries |
+| 13 | **skill-creator** | prompt + scripts (1) | Create new skills |
+| 14 | **watch** | prompt + scripts (3) | Learn from YouTube videos |
 
 ## Usage
 
