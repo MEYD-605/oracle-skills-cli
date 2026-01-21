@@ -21,34 +21,22 @@ bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.5.14 inst
 
 Oracle skills are reusable instruction sets for AI coding agents, built by [Soul Brews Studio](https://github.com/Soul-Brews-Studio). They extend your agent's capabilities with specialized workflows:
 
-### Subagent Skills
-
 | # | Skill | Type | Description |
 |---|-------|------|-------------|
 | 1 | **context-finder** | subagent | Fast codebase search |
-| 2 | **learn** | subagent | Explore codebases with parallel agents |
-| 3 | **rrr** | subagent | Session retrospective with AI diary |
-| 4 | **trace** | subagent | Find projects across git history, repos, docs |
-
-### Prompt Skills
-
-| # | Skill | Type | Description |
-|---|-------|------|-------------|
-| 5 | **feel** | prompt | Log emotions |
-| 6 | **forward** | prompt | Session handoff |
-| 7 | **fyi** | prompt | Log information for reference |
-| 8 | **standup** | prompt | Daily standup check |
-| 9 | **where-we-are** | prompt | Session awareness |
-
-### Prompt + Scripts Skills
-
-| # | Skill | Type | Description |
-|---|-------|------|-------------|
-| 10 | **project** | prompt + scripts (11) | Project lifecycle management |
-| 11 | **recap** | prompt + scripts (2) | Fresh start context summary |
-| 12 | **schedule** | prompt + scripts (2) | Calendar queries |
-| 13 | **skill-creator** | prompt + scripts (1) | Create new skills |
-| 14 | **watch** | prompt + scripts (3) | Learn from YouTube videos |
+| 2 | **feel** | prompt | Log emotions |
+| 3 | **forward** | prompt | Session handoff |
+| 4 | **fyi** | prompt | Log information for reference |
+| 5 | **learn** | subagent | Explore codebases with parallel agents |
+| 6 | **project** | prompt + scripts (11) | Project lifecycle management |
+| 7 | **recap** | prompt + scripts (2) | Fresh start context summary |
+| 8 | **rrr** | subagent | Session retrospective with AI diary |
+| 9 | **schedule** | prompt + scripts (2) | Calendar queries |
+| 10 | **skill-creator** | prompt + scripts (1) | Create new skills |
+| 11 | **standup** | prompt | Daily standup check |
+| 12 | **trace** | subagent | Find projects across git history, repos, docs |
+| 13 | **watch** | prompt + scripts (3) | Learn from YouTube videos |
+| 14 | **where-we-are** | prompt | Session awareness |
 
 ## Usage
 
