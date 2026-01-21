@@ -9,7 +9,7 @@ Install Oracle skills to Claude Code, OpenCode, Cursor, and 11+ AI coding agents
 
 ```bash
 # From GitHub (recommended)
-bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.7
+bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.5.14
 
 # From npm (after publish)
 bunx oracle-skills
@@ -44,10 +44,10 @@ Oracle skills are reusable instruction sets for AI coding agents, built by [Soul
 
 ```bash
 # Interactive (prompts for confirmation)
-bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.7
+bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.5.14
 
 # Install globally (user-level)
-bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.7 -g
+bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.5.14 -g
 ```
 
 ### Agent Mode (Non-Interactive)
@@ -56,13 +56,13 @@ For CI/CD, scripts, or AI agent automation:
 
 ```bash
 # Install all skills globally, no prompts
-bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.7 install -y -g
+bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.5.14 install -y -g
 
 # Install specific skills to specific agent
-bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.7 install -y -g -a claude-code -s rrr -s trace
+bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.5.14 install -y -g -a claude-code -s rrr -s trace
 
 # Uninstall all, no prompts
-bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.2.7 uninstall -y -g
+bunx --bun oracle-skills@github:Soul-Brews-Studio/oracle-skills-cli#v1.5.14 uninstall -y -g
 ```
 
 | Flag | Purpose |
@@ -123,7 +123,7 @@ bunx oracle-skills uninstall -a claude-code -s rrr -g
 
 | Agent | Project Path | Global Path |
 |-------|--------------|-------------|
-| OpenCode | `.opencode/skill/` | `~/.config/opencode/skill/` |
+| OpenCode | `.opencode/skills/` | `~/.config/opencode/skills/` |
 | Claude Code | `.claude/skills/` | `~/.claude/skills/` |
 | Codex | `.codex/skills/` | `~/.codex/skills/` |
 | Cursor | `.cursor/skills/` | `~/.cursor/skills/` |
