@@ -43,7 +43,6 @@ Simple instruction-based skills.
 | 9 | **where-we-are** | prompt | Session awareness |
 
 ### Prompt + Scripts Skills
-Skills with executable helper scripts.
 
 | # | Skill | Type | Description |
 |---|-------|------|-------------|
