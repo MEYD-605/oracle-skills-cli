@@ -7,6 +7,26 @@ const SKILLS_DIR = join(process.cwd(), 'src', 'skills');
 // Skills that use Task tool (subagents)
 const SUBAGENT_SKILLS = ['context-finder', 'learn', 'rrr', 'trace'];
 
+// Manual short descriptions (override auto-extracted)
+const SHORT_DESCRIPTIONS: Record<string, string> = {
+  'learn': 'Explore codebases with parallel agents',
+  'recap': 'Fresh-start context summary',
+  'context-finder': 'Fast codebase search',
+  'rrr': 'Session retrospective with AI diary',
+  'trace': 'Find projects across git history and Oracle',
+  'project': 'Clone and track external repos',
+  'schedule': 'Query schedule.md with DuckDB',
+  'physical': 'Location awareness from FindMy',
+  'watch': 'Learn from YouTube videos',
+  'skill-creator': 'Create new Oracle skills',
+  'standup': 'Daily standup check',
+  'where-we-are': 'Session awareness',
+  'feel': 'Log emotions',
+  'forward': 'Session handoff',
+  'fyi': 'Log info for future reference',
+  'oracle-family-scan': 'Scan Oracle family repos',
+};
+
 interface Skill {
   name: string;
   description: string;
@@ -37,8 +57,8 @@ async function parseSkill(skillName: string): Promise<Skill | null> {
   const descMatch = frontmatter.match(/description:\s*(.+?)(?:\n|$)/);
   const rawDescription = descMatch ? descMatch[1].trim() : `${skillName} skill`;
   
-  // Extract short description (before first period or "Use when")
-  const shortDesc = rawDescription
+  // Use manual short description or extract from frontmatter
+  const shortDesc = SHORT_DESCRIPTIONS[skillName] || rawDescription
     .split(/\. Use when|Use when/)[0]
     .replace(/\.$/, '')
     .trim();
